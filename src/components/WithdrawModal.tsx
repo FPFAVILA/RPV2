@@ -285,7 +285,7 @@ export const WithdrawModal: React.FC<WithdrawModalProps> = ({
                 <span className="text-yellow-800 font-bold text-sm">Verificacao Necessaria</span>
               </div>
               <p className="text-yellow-700 text-sm mb-3 leading-relaxed">
-                A verificação KYC confirma o titular da conta e libera funções financeiras como saque e depósito. É uma medida de segurança obrigatória para saques acima de R$ 1.000.
+                A verificação KYC confirma o titular da conta e libera funções financeiras como saque e depósito. É uma medida de segurança obrigatória.
               </p>
               <div className="bg-green-50 border border-green-200 rounded-lg p-2.5 mb-3">
                 <div className="flex items-start gap-2">

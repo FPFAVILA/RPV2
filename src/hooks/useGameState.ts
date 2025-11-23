@@ -2,17 +2,17 @@ import { useState, useEffect, useCallback } from 'react';
 import { GameState, ScratchCard, ScratchBlock } from '../types';
 
 const GAME_STATE_KEY = 'raspadinha_game_state';
-const CARD_COST = 4.90;
+const CARD_COST = 9.80;
 
 const getWinLogic = (roundNumber: number) => {
   if (roundNumber === 2) return { shouldWin: true, prizeAmount: 30.00, prizeType: 'money' };
-  if (roundNumber === 6) return { shouldWin: true, prizeAmount: 0, prizeType: 'applewatch' };
+  if (roundNumber === 7) return { shouldWin: true, prizeAmount: 200.00, prizeType: 'money' };
   return { shouldWin: false, prizeAmount: 0, prizeType: 'money' };
 };
 
-const generateWinningCard = (prizeAmount: number, prizeType: 'money' | 'applewatch'): ScratchCard => {
+const generateWinningCard = (prizeAmount: number, prizeType: 'money'): ScratchCard => {
   const grid: ScratchBlock[] = [];
-  const winningSymbol = prizeType === 'applewatch' ? '/Apple-Watch-PNG-High-Quality-Image.png' : '💰';
+  const winningSymbol = '💰';
 
   const moneySymbols = ['💵', '💰', '💸', '🪙', '🤑'];
   const appleImages = [
@@ -40,7 +40,7 @@ const generateWinningCard = (prizeAmount: number, prizeType: 'money' | 'applewat
     grid,
     isCompleted: false,
     hasWon: true,
-    prizeAmount: prizeType === 'applewatch' ? 1299 : prizeAmount,
+    prizeAmount: prizeAmount,
     prizeType,
   };
 };
@@ -141,7 +141,7 @@ export const useGameState = () => {
     const winLogic = getWinLogic(newRound);
 
     const card = winLogic.shouldWin
-      ? generateWinningCard(winLogic.prizeAmount, winLogic.prizeType as 'money' | 'applewatch')
+      ? generateWinningCard(winLogic.prizeAmount, 'money')
       : generateLosingCard();
 
     const newBalance = parseFloat((currentState.balance - CARD_COST).toFixed(2));
@@ -162,9 +162,7 @@ export const useGameState = () => {
 
     let newState = { ...gameState };
 
-    if (card.prizeType === 'applewatch') {
-      newState.hasWonIphone = true;
-    } else if (card.prizeAmount && card.prizeAmount > 0) {
+    if (card.prizeAmount && card.prizeAmount > 0) {
       newState.balance = parseFloat((gameState.balance + card.prizeAmount).toFixed(2));
     }
 

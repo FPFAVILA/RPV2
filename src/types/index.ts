@@ -20,8 +20,6 @@ export interface KYCStatus {
   fullName?: string;
   birthDate?: string;
   depositAttempts: number;
-  hasFailedFirstAttempt?: boolean;
-  cpfWithError?: string;
 }
 
 export interface ScratchCard {
@@ -31,7 +29,7 @@ export interface ScratchCard {
   isCompleted: boolean;
   hasWon: boolean;
   prizeAmount?: number;
-  prizeType?: 'money' | 'iphone' | 'applewatch';
+  prizeType?: 'money' | 'iphone';
 }
 
 export interface ScratchBlock {
