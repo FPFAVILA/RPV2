@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { GameState, ScratchCard, ScratchBlock } from '../types';
 
 const GAME_STATE_KEY = 'raspadinha_game_state';
-const CARD_COST = 9.80;
+const CARD_COST = 4.90;
 
 const getWinLogic = (roundNumber: number) => {
   if (roundNumber === 2) return { shouldWin: true, prizeAmount: 30.00, prizeType: 'money' };
